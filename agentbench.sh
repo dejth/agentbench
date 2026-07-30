@@ -15,6 +15,10 @@ source "$AGENTBENCH_ROOT/src/init.sh"
 source "$AGENTBENCH_ROOT/src/workspace.sh"
 # shellcheck source=adapters/custom.sh
 source "$AGENTBENCH_ROOT/adapters/custom.sh"
+# shellcheck source=src/scoring.sh
+source "$AGENTBENCH_ROOT/src/scoring.sh"
+# shellcheck source=src/evaluator.sh
+source "$AGENTBENCH_ROOT/src/evaluator.sh"
 # shellcheck source=src/cli.sh
 source "$AGENTBENCH_ROOT/src/cli.sh"
 

@@ -25,6 +25,9 @@ run_test init "$TESTS_ROOT/test-init.sh"
 run_test parser "$TESTS_ROOT/test-parser.sh"
 run_test workspace "$TESTS_ROOT/test-workspace.sh"
 run_test adapter "$TESTS_ROOT/test-adapter.sh"
+run_test evaluator "$TESTS_ROOT/test-evaluator.sh"
+run_test scoring "$TESTS_ROOT/test-scoring.sh"
+run_test schema "$TESTS_ROOT/test-schema.sh"
 
 if [[ "$executed" -eq 0 ]]; then
   printf 'No tests matched: %s\n' "${*:-}" >&2

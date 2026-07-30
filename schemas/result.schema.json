@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dejth/agentbench/schemas/result.schema.json",
+  "title": "AgentBench result format v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "status",
+    "score",
+    "pass_threshold",
+    "benchmark",
+    "setup",
+    "source",
+    "agent",
+    "environment",
+    "score_breakdown",
+    "validations",
+    "required_files",
+    "changed_files",
+    "scope_violations",
+    "critical_failures"
+  ],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "pass_threshold": {"type": "integer", "minimum": 0, "maximum": 100},
+    "benchmark": {
+      "type": "object",
+      "required": ["id", "format_version"]
+    },
+    "setup": {
+      "type": "object",
+      "required": ["id", "content_hash"]
+    },
+    "source": {
+      "type": "object",
+      "required": ["starting_commit"]
+    },
+    "agent": {
+      "type": "object",
+      "required": ["command", "exit_code", "timed_out", "duration_seconds"]
+    },
+    "environment": {"type": "object"},
+    "score_breakdown": {
+      "type": "object",
+      "required": ["correctness", "regression_safety", "instruction_compliance", "efficiency"]
+    },
+    "validations": {"type": "array"},
+    "required_files": {"type": "array"},
+    "changed_files": {"type": "array", "items": {"type": "string"}},
+    "scope_violations": {"type": "array", "items": {"type": "string"}},
+    "critical_failures": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

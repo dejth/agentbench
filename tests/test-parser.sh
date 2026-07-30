@@ -28,6 +28,24 @@ fi
 actual="$(cat "$TEST_TMP/stderr")"
 assert_contains "unsupported or missing Format-Version: 2" "$actual"
 
+sed 's#`src/\*\*`#`../outside/**`#' \
+  "$TEST_TMP/valid.md" > "$TEST_TMP/unsafe.md"
+if "$TEST_ROOT/agentbench.sh" validate --benchmark "$TEST_TMP/unsafe.md" \
+  >"$TEST_TMP/stdout" 2>"$TEST_TMP/stderr"; then
+  fail "benchmark with an unsafe scope path passed"
+fi
+actual="$(cat "$TEST_TMP/stderr")"
+assert_contains "unsafe Allowed Scope path" "$actual"
+
+sed 's/Correctness — 50 points/Correctness — 49 points/' \
+  "$TEST_TMP/valid.md" > "$TEST_TMP/bad-score.md"
+if "$TEST_ROOT/agentbench.sh" validate --benchmark "$TEST_TMP/bad-score.md" \
+  >"$TEST_TMP/stdout" 2>"$TEST_TMP/stderr"; then
+  fail "benchmark with scoring weights below 100 passed"
+fi
+actual="$(cat "$TEST_TMP/stderr")"
+assert_contains "scoring category weights must total 100" "$actual"
+
 # shellcheck source=src/utils.sh
 source "$TEST_ROOT/src/utils.sh"
 # shellcheck source=src/parser.sh

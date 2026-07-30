@@ -4,19 +4,20 @@ Last updated: 2026-07-30
 
 Target: v0.1.0
 
-Overall state: execution isolation in progress
+Overall state: deterministic evaluation in progress
 
 ## Current State
 
 - Repository identity, visibility, default branch, license, remote, active GitHub account, and clean worktree have been verified.
 - Product, requirements, architecture, decisions, plan, task dependencies, and deterministic quality gates are defined and merged through PR #2.
 - CLI initialization and Markdown parsing are merged through PR #10.
-- Git worktree isolation and the custom agent adapter are under implementation.
-- No evaluator, complete run engine, comparison engine, CI, complete documentation, or release artifact exists yet.
+- Git worktree isolation and the custom agent adapter are merged through PR #11.
+- Deterministic validation, scope evaluation, scoring, and result JSON are under implementation.
+- No complete run engine, comparison engine, CI, complete documentation, or release artifact exists yet.
 
 ## Active Work
 
-- Issue #9: add safe Git worktree isolation and custom agent adapter.
+- Issue #7: implement deterministic evaluation, scoring, and result schema.
 
 ## Known Risks
 
@@ -28,4 +29,4 @@ Overall state: execution isolation in progress
 
 ## Next Milestone
 
-Merge the reviewed isolation and adapter work, then implement deterministic evaluation, scoring, and result JSON in Issue #7.
+Merge the reviewed evaluator and scoring work, then implement repeated runs, comparisons, and reports in Issue #4.
