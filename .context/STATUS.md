@@ -4,7 +4,7 @@ Last updated: 2026-07-30
 
 Target: v0.1.0
 
-Overall state: documentation and examples in progress
+Overall state: v0.1.0 release candidate validated
 
 ## Current State
 
@@ -15,12 +15,14 @@ Overall state: documentation and examples in progress
 - Deterministic validation, scope evaluation, scoring, and result JSON are merged through PR #12.
 - Repeated runs, comparison statistics, and reporting are merged through PR #13.
 - Comprehensive failure fixtures, portability checks, ShellCheck, and Linux/macOS CI are merged through PR #14.
-- Standalone packaging, user documentation, examples, and security guidance are under implementation.
-- No release artifact exists yet.
+- Standalone packaging, user documentation, examples, and security guidance are merged through PR #17.
+- The complete local suite and Linux/macOS CI pass on `main`.
+- The raw `main` standalone runner matches the local artifact and passes version, initialization, and benchmark validation smoke checks.
+- No `v0.1.0` tag or GitHub release exists yet.
 
 ## Active Work
 
-- Issue #6: document installation, usage, examples, and security.
+- Issue #8: validate release readiness and publish AgentBench v0.1.0.
 
 ## Known Risks
 
@@ -32,4 +34,4 @@ Overall state: documentation and examples in progress
 
 ## Next Milestone
 
-Merge reviewed standalone packaging and documentation, then complete the v0.1.0 release audit in Issue #8.
+Merge the release-readiness evidence, publish and verify v0.1.0, then record final release status and close Issue #8.

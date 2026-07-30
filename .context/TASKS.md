@@ -10,8 +10,8 @@ Status: active
 | T-004 | Validation, scope checks, scoring, and result schema | T-002, T-003 | complete (Issue #7, PR #12) |
 | T-005 | Repeated runs, comparison, and reporters | T-004 | complete (Issue #4, PR #13) |
 | T-006 | Automated tests, fixtures, and CI | T-002 through T-005 | complete (Issue #3, PR #14) |
-| T-007 | Examples, user documentation, and security | T-002 through T-005 | in progress (Issue #6) |
-| T-008 | Release readiness and v0.1.0 | T-006, T-007 | planned (Issue #8) |
+| T-007 | Examples, user documentation, and security | T-002 through T-005 | complete (Issue #6, PR #17) |
+| T-008 | Release readiness and v0.1.0 | T-006, T-007 | in progress (Issue #8) |
 
 ## Task Rules
 
