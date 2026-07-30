@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Score state is a module interface consumed by evaluator.sh.
+# shellcheck disable=SC2034
+
 AB_SCORE_TOTAL=0
 AB_SCORE_CORRECTNESS=0
 AB_SCORE_REGRESSION_SAFETY=0

@@ -8,10 +8,22 @@ failures=0
 executed=0
 
 run_test() {
-  local name="$1"
+  local aliases="$1"
   local script_path="$2"
+  local test_name
+  local selected=false
 
-  if [[ "$requested" != *" all "* && "$requested" != *" $name "* ]]; then
+  if [[ "$requested" == *" all "* ]]; then
+    selected=true
+  else
+    for test_name in $aliases; do
+      if [[ "$requested" == *" $test_name "* ]]; then
+        selected=true
+      fi
+    done
+  fi
+
+  if [[ "$selected" != "true" ]]; then
     return 0
   fi
 
@@ -29,8 +41,10 @@ run_test evaluator "$TESTS_ROOT/test-evaluator.sh"
 run_test scoring "$TESTS_ROOT/test-scoring.sh"
 run_test schema "$TESTS_ROOT/test-schema.sh"
 run_test runner "$TESTS_ROOT/test-runner.sh"
-run_test comparison "$TESTS_ROOT/test-comparison.sh"
-run_test report "$TESTS_ROOT/test-comparison.sh"
+run_test "comparison report" "$TESTS_ROOT/test-comparison.sh"
+run_test cli "$TESTS_ROOT/test-cli.sh"
+run_test failures "$TESTS_ROOT/test-failures.sh"
+run_test clean "$TESTS_ROOT/test-clean.sh"
 
 if [[ "$executed" -eq 0 ]]; then
   printf 'No tests matched: %s\n' "${*:-}" >&2

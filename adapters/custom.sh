@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Adapter result state is a module interface consumed by runner and evaluator modules.
+# shellcheck disable=SC2034
+
 AB_AGENT_EXIT_CODE=""
 AB_AGENT_DURATION_SECONDS=""
 AB_AGENT_TIMED_OUT="false"

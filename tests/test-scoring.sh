@@ -2,7 +2,7 @@
 
 set -Eeuo pipefail
 
-# shellcheck source=test-helper.sh
+# shellcheck source=tests/test-helper.sh
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/test-helper.sh"
 # shellcheck source=src/utils.sh
 source "$TEST_ROOT/src/utils.sh"

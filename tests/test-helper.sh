@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Helper state is consumed by the test files that source this module.
+# shellcheck disable=SC2034
+
 set -Eeuo pipefail
 
 TEST_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

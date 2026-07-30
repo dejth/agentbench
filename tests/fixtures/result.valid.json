@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "run_id": "fixture-run",
+  "status": "PASS",
+  "score": 100,
+  "pass_threshold": 70,
+  "benchmark": {"id": "fixture", "format_version": "1", "content_hash": "sha256"},
+  "setup": {"id": "baseline", "content_hash": "sha256"},
+  "source": {"starting_commit": "0123456789abcdef"},
+  "agent": {"command": "fixture", "exit_code": 0, "timed_out": false, "duration_seconds": 1},
+  "environment": {},
+  "score_breakdown": {
+    "correctness": 50,
+    "regression_safety": 20,
+    "instruction_compliance": 20,
+    "efficiency": 10
+  },
+  "validations": [],
+  "required_files": [],
+  "changed_files": [],
+  "scope_violations": [],
+  "critical_failures": []
+}

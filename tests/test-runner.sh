@@ -2,7 +2,7 @@
 
 set -Eeuo pipefail
 
-# shellcheck source=test-helper.sh
+# shellcheck source=tests/test-helper.sh
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/test-helper.sh"
 test_setup
 trap test_teardown EXIT
@@ -22,6 +22,8 @@ index_file="$TEST_TMP/project/.agentbench/results/baseline/runs.json"
 assert_file "$index_file"
 [[ "$(jq '.results | length' "$index_file")" -eq 2 ]] || fail "runner did not preserve two results"
 [[ "$(jq '[.results[] | select(.status == "PASS")] | length' "$index_file")" -eq 2 ]] || fail "successful runs did not pass"
+[[ "$(jq '[.results[].source.starting_commit] | unique | length' "$index_file")" -eq 1 ]] || fail "repeated runs used different commits"
+[[ "$(jq '[.results[].changed_files] | unique | length' "$index_file")" -eq 1 ]] || fail "repeated runs did not begin from equivalent state"
 [[ "$(git -C "$TEST_TMP/project" status --short --untracked-files=no)" == "" ]] || fail "runner modified tracked files in original checkout"
 workspace_count="$(find "$TEST_TMP/project/.agentbench/tmp" -name OWNER -print | wc -l | tr -d ' ')"
 [[ "$workspace_count" -eq 0 ]] || fail "runner left a managed workspace"

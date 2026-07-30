@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Markdown code spans require literal backticks in single-quoted printf formats.
+# shellcheck disable=SC2016
+
 ab_metric_display() {
   local comparison_file="$1"
   local side="$2"

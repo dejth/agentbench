@@ -8,6 +8,8 @@ ab_path_is_allowed() {
   while IFS= read -r pattern; do
     pattern="$(ab_unquote_markdown_code "$pattern")"
     pattern="${pattern#./}"
+    # shellcheck disable=SC2053
+    # The benchmark value is intentionally interpreted as a glob pattern.
     if [[ "$changed_path" == $pattern ]]; then
       return 0
     fi

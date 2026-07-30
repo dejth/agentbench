@@ -1,0 +1,41 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  shell-quality:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq shellcheck
+      - name: Install macOS dependencies
+        if: runner.os == 'macOS'
+        run: |
+          brew install jq shellcheck
+      - name: Install schema validator
+        run: |
+          python3 -m venv .ci-venv
+          .ci-venv/bin/pip install check-jsonschema
+          echo "$PWD/.ci-venv/bin" >> "$GITHUB_PATH"
+      - name: Validate shell syntax
+        run: bash -n agentbench.sh src/*.sh adapters/*.sh tests/*.sh tests/fixtures/*.sh
+      - name: Run ShellCheck
+        run: shellcheck agentbench.sh src/*.sh adapters/*.sh tests/*.sh tests/fixtures/*.sh
+      - name: Run test suite
+        run: ./tests/run.sh
+      - name: Check whitespace
+        run: git diff --check

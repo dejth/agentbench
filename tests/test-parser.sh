@@ -2,13 +2,13 @@
 
 set -Eeuo pipefail
 
-# shellcheck source=test-helper.sh
+# shellcheck source=tests/test-helper.sh
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/test-helper.sh"
 test_setup
 trap test_teardown EXIT
 
 cp "$TEST_ROOT/templates/BENCHMARK.md" "$TEST_TMP/valid.md"
-output="$($TEST_ROOT/agentbench.sh validate --benchmark "$TEST_TMP/valid.md")"
+output="$("$TEST_ROOT/agentbench.sh" validate --benchmark "$TEST_TMP/valid.md")"
 assert_contains "is valid" "$output"
 
 awk '!/^## Critical Failures$/' "$TEST_TMP/valid.md" > "$TEST_TMP/invalid.md"
@@ -28,6 +28,8 @@ fi
 actual="$(cat "$TEST_TMP/stderr")"
 assert_contains "unsupported or missing Format-Version: 2" "$actual"
 
+# The backticks are literal Markdown code spans.
+# shellcheck disable=SC2016
 sed 's#`src/\*\*`#`../outside/**`#' \
   "$TEST_TMP/valid.md" > "$TEST_TMP/unsafe.md"
 if "$TEST_ROOT/agentbench.sh" validate --benchmark "$TEST_TMP/unsafe.md" \

@@ -4,7 +4,7 @@ Last updated: 2026-07-30
 
 Target: v0.1.0
 
-Overall state: orchestration and reporting in progress
+Overall state: QA and CI in progress
 
 ## Current State
 
@@ -13,12 +13,13 @@ Overall state: orchestration and reporting in progress
 - CLI initialization and Markdown parsing are merged through PR #10.
 - Git worktree isolation and the custom agent adapter are merged through PR #11.
 - Deterministic validation, scope evaluation, scoring, and result JSON are merged through PR #12.
-- Repeated runs, comparison statistics, and reporting are under implementation.
-- No CI, complete documentation, or release artifact exists yet.
+- Repeated runs, comparison statistics, and reporting are merged through PR #13.
+- Comprehensive failure fixtures, portability checks, ShellCheck, and CI are under implementation.
+- No complete user documentation or release artifact exists yet.
 
 ## Active Work
 
-- Issue #4: add repeated runs, comparison statistics, and reports.
+- Issue #3: build comprehensive fixtures, tests, and CI.
 
 ## Known Risks
 
@@ -30,4 +31,4 @@ Overall state: orchestration and reporting in progress
 
 ## Next Milestone
 
-Merge the reviewed orchestration and reporting work, then complete comprehensive QA and user documentation in Issues #3 and #6.
+Merge reviewed QA and CI, then complete user documentation, examples, and security guidance in Issue #6.

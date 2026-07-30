@@ -2,7 +2,7 @@
 
 set -Eeuo pipefail
 
-# shellcheck source=test-helper.sh
+# shellcheck source=tests/test-helper.sh
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/test-helper.sh"
 # shellcheck source=src/utils.sh
 source "$TEST_ROOT/src/utils.sh"
@@ -25,6 +25,8 @@ git -C "$TEST_TMP/project" commit -qm "add app"
 starting_commit="$(git -C "$TEST_TMP/project" rev-parse HEAD)"
 
 cp "$TEST_ROOT/templates/BENCHMARK.md" "$TEST_TMP/BENCHMARK.md"
+# The backticks are literal Markdown code spans.
+# shellcheck disable=SC2016
 sed -e 's#`tests/example-test.sh`#`tests/regression.txt`#' \
   -e 's#./tests/example-test.sh#test -f tests/regression.txt#' \
   "$TEST_TMP/BENCHMARK.md" > "$TEST_TMP/BENCHMARK.next"

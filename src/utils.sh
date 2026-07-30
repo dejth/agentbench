@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Version constants are a module interface consumed by other sourced files.
+# shellcheck disable=SC2034
+
 AB_VERSION="0.1.0"
 AB_BENCHMARK_FORMAT_VERSION="1"
 AB_RESULT_FORMAT_VERSION="1"
