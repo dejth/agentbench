@@ -40,3 +40,7 @@ make_git_repo() {
   git -C "$destination" add README.md
   git -C "$destination" commit -qm "fixture"
 }
+
+assert_not_exists() {
+  [[ ! -e "$1" ]] || fail "expected path not to exist: $1"
+}

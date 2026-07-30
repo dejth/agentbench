@@ -11,6 +11,10 @@ source "$AGENTBENCH_ROOT/src/utils.sh"
 source "$AGENTBENCH_ROOT/src/parser.sh"
 # shellcheck source=src/init.sh
 source "$AGENTBENCH_ROOT/src/init.sh"
+# shellcheck source=src/workspace.sh
+source "$AGENTBENCH_ROOT/src/workspace.sh"
+# shellcheck source=adapters/custom.sh
+source "$AGENTBENCH_ROOT/adapters/custom.sh"
 # shellcheck source=src/cli.sh
 source "$AGENTBENCH_ROOT/src/cli.sh"
 

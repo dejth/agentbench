@@ -62,7 +62,8 @@ ab_cli() {
     version|-V|--version) printf 'AgentBench %s\n' "$AB_VERSION" ;;
     init) ab_init "$@" ;;
     validate) ab_cli_validate "$@" ;;
-    run|compare|report|clean) ab_not_implemented "$command_name" ;;
+    clean) ab_clean_managed_workspaces ;;
+    run|compare|report) ab_not_implemented "$command_name" ;;
     *)
       ab_error "unknown command: $command_name"
       ab_help >&2
