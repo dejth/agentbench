@@ -3,6 +3,7 @@
 AB_WORKSPACE_PARENT=""
 AB_WORKSPACE_PATH=""
 AB_WORKSPACE_PROJECT_ROOT=""
+AB_WORKSPACE_CONTROL=""
 
 ab_resolve_revision() {
   local project_root="$1"
@@ -30,13 +31,16 @@ ab_workspace_create() {
   mkdir -p "$temp_root"
   AB_WORKSPACE_PARENT="$(mktemp -d "$temp_root/$safe_run_id.XXXXXX")"
   AB_WORKSPACE_PATH="$AB_WORKSPACE_PARENT/worktree"
+  AB_WORKSPACE_CONTROL="$AB_WORKSPACE_PARENT/control"
   printf 'agentbench-workspace-v1\n' > "$AB_WORKSPACE_PARENT/OWNER"
+  mkdir -p "$AB_WORKSPACE_CONTROL"
 
   if ! git -C "$project_root" worktree add --quiet --detach \
     "$AB_WORKSPACE_PATH" "$revision"; then
     ab_workspace_discard_parent "$project_root" "$AB_WORKSPACE_PARENT"
     AB_WORKSPACE_PARENT=""
     AB_WORKSPACE_PATH=""
+    AB_WORKSPACE_CONTROL=""
     return 1
   fi
 }
@@ -75,6 +79,7 @@ ab_workspace_discard_parent() {
     }
   fi
 
+  rm -rf "$parent_path/control"
   rm -f "$parent_path/OWNER"
   rmdir "$parent_path" 2>/dev/null || {
     ab_error "managed workspace directory is not empty: $parent_path"
@@ -89,6 +94,7 @@ ab_workspace_cleanup() {
     ab_workspace_discard_parent "$project_root" "$AB_WORKSPACE_PARENT"
     AB_WORKSPACE_PARENT=""
     AB_WORKSPACE_PATH=""
+    AB_WORKSPACE_CONTROL=""
   fi
 }
 

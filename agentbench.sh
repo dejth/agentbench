@@ -19,6 +19,12 @@ source "$AGENTBENCH_ROOT/adapters/custom.sh"
 source "$AGENTBENCH_ROOT/src/scoring.sh"
 # shellcheck source=src/evaluator.sh
 source "$AGENTBENCH_ROOT/src/evaluator.sh"
+# shellcheck source=src/runner.sh
+source "$AGENTBENCH_ROOT/src/runner.sh"
+# shellcheck source=src/reporter.sh
+source "$AGENTBENCH_ROOT/src/reporter.sh"
+# shellcheck source=src/comparison.sh
+source "$AGENTBENCH_ROOT/src/comparison.sh"
 # shellcheck source=src/cli.sh
 source "$AGENTBENCH_ROOT/src/cli.sh"
 

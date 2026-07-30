@@ -189,6 +189,7 @@ ab_evaluate_run() {
   local lock_hash
   local benchmark_id
   local agent_command_display
+  local benchmark_hash
 
   ab_require_command jq
   mkdir -p "$evidence_dir"
@@ -242,6 +243,7 @@ ab_evaluate_run() {
   lock_hash="$(ab_dependency_lock_hash "$project_root")"
   benchmark_id="$(ab_metadata_value "$benchmark_file" "Benchmark-ID")"
   [[ -n "$benchmark_id" ]] || benchmark_id="unavailable"
+  benchmark_hash="$(ab_hash_file "$benchmark_file")"
   agent_command_display="$(ab_redact_text "$agent_command")"
 
   jq -n \
@@ -249,6 +251,7 @@ ab_evaluate_run() {
     --arg agentbench_version "$AB_VERSION" \
     --arg benchmark_format_version "$AB_BENCHMARK_FORMAT_VERSION" \
     --arg benchmark_id "$benchmark_id" \
+    --arg benchmark_hash "$benchmark_hash" \
     --arg setup_id "$setup_id" \
     --arg setup_hash "$setup_hash" \
     --arg run_id "$run_id" \
@@ -285,7 +288,11 @@ ab_evaluate_run() {
       status: $status,
       score: $score,
       pass_threshold: $threshold,
-      benchmark: {id: $benchmark_id, format_version: $benchmark_format_version},
+      benchmark: {
+        id: $benchmark_id,
+        format_version: $benchmark_format_version,
+        content_hash: $benchmark_hash
+      },
       setup: {id: $setup_id, content_hash: $setup_hash},
       source: {
         starting_commit: $starting_commit,

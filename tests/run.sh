@@ -28,6 +28,9 @@ run_test adapter "$TESTS_ROOT/test-adapter.sh"
 run_test evaluator "$TESTS_ROOT/test-evaluator.sh"
 run_test scoring "$TESTS_ROOT/test-scoring.sh"
 run_test schema "$TESTS_ROOT/test-schema.sh"
+run_test runner "$TESTS_ROOT/test-runner.sh"
+run_test comparison "$TESTS_ROOT/test-comparison.sh"
+run_test report "$TESTS_ROOT/test-comparison.sh"
 
 if [[ "$executed" -eq 0 ]]; then
   printf 'No tests matched: %s\n' "${*:-}" >&2

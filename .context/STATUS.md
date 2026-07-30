@@ -4,7 +4,7 @@ Last updated: 2026-07-30
 
 Target: v0.1.0
 
-Overall state: deterministic evaluation in progress
+Overall state: orchestration and reporting in progress
 
 ## Current State
 
@@ -12,12 +12,13 @@ Overall state: deterministic evaluation in progress
 - Product, requirements, architecture, decisions, plan, task dependencies, and deterministic quality gates are defined and merged through PR #2.
 - CLI initialization and Markdown parsing are merged through PR #10.
 - Git worktree isolation and the custom agent adapter are merged through PR #11.
-- Deterministic validation, scope evaluation, scoring, and result JSON are under implementation.
-- No complete run engine, comparison engine, CI, complete documentation, or release artifact exists yet.
+- Deterministic validation, scope evaluation, scoring, and result JSON are merged through PR #12.
+- Repeated runs, comparison statistics, and reporting are under implementation.
+- No CI, complete documentation, or release artifact exists yet.
 
 ## Active Work
 
-- Issue #7: implement deterministic evaluation, scoring, and result schema.
+- Issue #4: add repeated runs, comparison statistics, and reports.
 
 ## Known Risks
 
@@ -29,4 +30,4 @@ Overall state: deterministic evaluation in progress
 
 ## Next Milestone
 
-Merge the reviewed evaluator and scoring work, then implement repeated runs, comparisons, and reports in Issue #4.
+Merge the reviewed orchestration and reporting work, then complete comprehensive QA and user documentation in Issues #3 and #6.

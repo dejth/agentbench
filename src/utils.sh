@@ -90,3 +90,25 @@ ab_redact_text() {
 ab_json_array_from_lines() {
   jq -Rsc 'split("\n") | map(select(length > 0))' "$1"
 }
+
+ab_generate_id() {
+  local prefix
+  prefix="$(ab_slug "$1")"
+  printf '%s-%s-%s-%s\n' \
+    "$prefix" \
+    "$(date -u '+%Y%m%dt%H%M%Sz')" \
+    "$$" \
+    "$RANDOM"
+}
+
+ab_validate_identifier() {
+  local value="$1"
+  local kind="$2"
+  local safe_value
+
+  safe_value="$(ab_slug "$value")"
+  if [[ -z "$safe_value" || "$safe_value" != "$value" ]]; then
+    ab_error "$kind identifier must use lowercase letters, numbers, dot, underscore, or hyphen: $value"
+    return 1
+  fi
+}

@@ -21,7 +21,7 @@ Commands:
   validate   Validate benchmark and optional setup definitions.
   run        Execute one setup in isolated workspaces.
   compare    Compare stored results for two setups.
-  report     Print the path to a stored comparison report.
+  report     Print a stored comparison report.
   clean      Remove AgentBench-managed temporary workspaces.
 EOF
 }
@@ -47,6 +47,63 @@ ab_cli_validate() {
   ab_validate_benchmark "$benchmark_path"
 }
 
+ab_cli_run() {
+  local setup_id=""
+  local agent_command=""
+  local run_count=1
+  local timeout_seconds=900
+  local revision="HEAD"
+
+  while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+      --setup)
+        [[ "$#" -ge 2 ]] || ab_die "--setup requires an identifier"
+        setup_id="$2"
+        shift 2
+        ;;
+      --agent-command)
+        [[ "$#" -ge 2 ]] || ab_die "--agent-command requires a command"
+        agent_command="$2"
+        shift 2
+        ;;
+      --runs)
+        [[ "$#" -ge 2 ]] || ab_die "--runs requires a number"
+        run_count="$2"
+        shift 2
+        ;;
+      --timeout)
+        [[ "$#" -ge 2 ]] || ab_die "--timeout requires seconds"
+        timeout_seconds="$2"
+        shift 2
+        ;;
+      --revision)
+        [[ "$#" -ge 2 ]] || ab_die "--revision requires a Git reference"
+        revision="$2"
+        shift 2
+        ;;
+      -h|--help)
+        printf 'Usage: ./agentbench.sh run --setup ID --agent-command COMMAND [--runs N] [--timeout SECONDS] [--revision REF]\n'
+        return 0
+        ;;
+      *) ab_die "unknown run argument: $1" ;;
+    esac
+  done
+
+  [[ -n "$setup_id" ]] || ab_die "run requires --setup"
+  [[ -n "$agent_command" ]] || ab_die "run requires --agent-command"
+  ab_run_setup "$setup_id" "$agent_command" "$run_count" "$timeout_seconds" "$revision"
+}
+
+ab_cli_compare() {
+  [[ "$#" -eq 2 ]] || ab_die "Usage: ./agentbench.sh compare BASELINE CANDIDATE"
+  ab_compare_setups "$1" "$2"
+}
+
+ab_cli_report() {
+  [[ "$#" -eq 1 ]] || ab_die "Usage: ./agentbench.sh report COMPARISON_ID"
+  ab_show_report "$1"
+}
+
 ab_not_implemented() {
   ab_die "$1 is not implemented in this workstream"
 }
@@ -62,8 +119,10 @@ ab_cli() {
     version|-V|--version) printf 'AgentBench %s\n' "$AB_VERSION" ;;
     init) ab_init "$@" ;;
     validate) ab_cli_validate "$@" ;;
+    run) ab_cli_run "$@" ;;
+    compare) ab_cli_compare "$@" ;;
+    report) ab_cli_report "$@" ;;
     clean) ab_clean_managed_workspaces ;;
-    run|compare|report) ab_not_implemented "$command_name" ;;
     *)
       ab_error "unknown command: $command_name"
       ab_help >&2
