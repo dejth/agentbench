@@ -4,7 +4,7 @@ Last updated: 2026-07-30
 
 Target: v0.1.0
 
-Overall state: QA and CI in progress
+Overall state: documentation and examples in progress
 
 ## Current State
 
@@ -14,12 +14,13 @@ Overall state: QA and CI in progress
 - Git worktree isolation and the custom agent adapter are merged through PR #11.
 - Deterministic validation, scope evaluation, scoring, and result JSON are merged through PR #12.
 - Repeated runs, comparison statistics, and reporting are merged through PR #13.
-- Comprehensive failure fixtures, portability checks, ShellCheck, and CI are under implementation.
-- No complete user documentation or release artifact exists yet.
+- Comprehensive failure fixtures, portability checks, ShellCheck, and Linux/macOS CI are merged through PR #14.
+- Standalone packaging, user documentation, examples, and security guidance are under implementation.
+- No release artifact exists yet.
 
 ## Active Work
 
-- Issue #3: build comprehensive fixtures, tests, and CI.
+- Issue #6: document installation, usage, examples, and security.
 
 ## Known Risks
 
@@ -31,4 +32,4 @@ Overall state: QA and CI in progress
 
 ## Next Milestone
 
-Merge reviewed QA and CI, then complete user documentation, examples, and security guidance in Issue #6.
+Merge reviewed standalone packaging and documentation, then complete the v0.1.0 release audit in Issue #8.

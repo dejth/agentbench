@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -32,9 +33,13 @@ jobs:
           .ci-venv/bin/pip install check-jsonschema
           echo "$PWD/.ci-venv/bin" >> "$GITHUB_PATH"
       - name: Validate shell syntax
-        run: bash -n agentbench.sh src/*.sh adapters/*.sh tests/*.sh tests/fixtures/*.sh
+        run: bash -n agentbench.sh install.sh src/*.sh adapters/*.sh scripts/*.sh tests/*.sh tests/fixtures/*.sh examples/prompt-comparison/fake-agent.sh
       - name: Run ShellCheck
-        run: shellcheck agentbench.sh src/*.sh adapters/*.sh tests/*.sh tests/fixtures/*.sh
+        run: shellcheck agentbench.sh install.sh src/*.sh adapters/*.sh scripts/*.sh tests/*.sh tests/fixtures/*.sh examples/prompt-comparison/fake-agent.sh
+      - name: Verify standalone runner
+        run: |
+          ./scripts/build-standalone.sh
+          git diff --exit-code -- agentbench.sh
       - name: Run test suite
         run: ./tests/run.sh
       - name: Check whitespace

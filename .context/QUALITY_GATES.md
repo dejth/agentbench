@@ -6,6 +6,8 @@ Status: active
 
 ```bash
 git diff --check
+./scripts/build-standalone.sh
+git diff --exit-code -- agentbench.sh
 bash -n agentbench.sh
 bash -n src/*.sh
 bash -n adapters/*.sh
@@ -14,7 +16,7 @@ bash -n adapters/*.sh
 When ShellCheck is installed:
 
 ```bash
-shellcheck agentbench.sh src/*.sh adapters/*.sh tests/*.sh
+shellcheck agentbench.sh install.sh src/*.sh adapters/*.sh scripts/*.sh tests/*.sh tests/fixtures/*.sh examples/prompt-comparison/fake-agent.sh
 ```
 
 Run the full test harness:

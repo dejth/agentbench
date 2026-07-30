@@ -18,6 +18,9 @@ ab_init() {
   ab_copy_unless_exists \
     "$AGENTBENCH_ROOT/templates/BENCHMARK.md" \
     "$state_dir/BENCHMARK.md"
+  ab_copy_unless_exists \
+    "$AGENTBENCH_ROOT/templates/agentbench.gitignore" \
+    "$state_dir/.gitignore"
 
   for setup_id in baseline candidate; do
     mkdir -p "$state_dir/setups/$setup_id"

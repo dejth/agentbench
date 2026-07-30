@@ -45,6 +45,9 @@ run_test "comparison report" "$TESTS_ROOT/test-comparison.sh"
 run_test cli "$TESTS_ROOT/test-cli.sh"
 run_test failures "$TESTS_ROOT/test-failures.sh"
 run_test clean "$TESTS_ROOT/test-clean.sh"
+run_test standalone "$TESTS_ROOT/test-standalone.sh"
+run_test example "$TESTS_ROOT/test-example.sh"
+run_test docs "$TESTS_ROOT/test-docs.sh"
 
 if [[ "$executed" -eq 0 ]]; then
   printf 'No tests matched: %s\n' "${*:-}" >&2

@@ -37,3 +37,7 @@ Use `timeout` on Linux or `gtimeout` on macOS when available, with a portable pr
 ## ADR-009: No YAML
 
 Do not add YAML configuration. GitHub Actions is the only unavoidable YAML file because GitHub requires that workflow format.
+
+## ADR-010: Generated standalone distribution
+
+Develop against focused modules and deterministically generate the repository-root `agentbench.sh` with embedded templates. CI rebuilds it and rejects a diff, ensuring the documented one-file download matches reviewed source.

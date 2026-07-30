@@ -4,7 +4,7 @@ Status: accepted for v0.1.0
 
 ## Overview
 
-`agentbench.sh` is a thin executable that loads small Bash modules. Data flows from Markdown definitions through parsing and isolated execution to versioned JSON, then from JSON to comparison and Markdown reporting.
+Development uses small Bash modules. `scripts/build-standalone.sh` concatenates those modules and embeds initialization templates into the downloadable `agentbench.sh`. Data flows from Markdown definitions through parsing and isolated execution to versioned JSON, then from JSON to comparison and Markdown reporting.
 
 ```text
 CLI -> parser -> workspace -> adapter -> evaluator -> scoring -> result JSON
@@ -25,6 +25,7 @@ run indexes -> comparison ------------------------------+-> terminal/Markdown re
 - `src/comparison.sh`: aggregation and statistics
 - `src/reporter.sh`: terminal and Markdown rendering
 - `src/utils.sh`: errors, identifiers, hashing, timing, JSON, and redaction helpers
+- `scripts/build-standalone.sh`: deterministic standalone runner generation with embedded init assets
 
 ## Run Lifecycle
 
@@ -67,4 +68,4 @@ Generated paths use sanitized identifiers and random run suffixes. JSON writes u
 
 ## Compatibility
 
-The public contracts are the CLI, Markdown format version 1, result schema version 1, and on-disk paths above. Internal module functions are not public API in v0.1.0.
+The public contracts are the standalone CLI, Markdown format version 1, result schema version 1, and on-disk paths above. Internal module functions and the modular source layout are not public API in v0.1.0.
