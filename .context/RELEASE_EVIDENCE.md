@@ -1,6 +1,6 @@
 # v0.1.0 Release Evidence
 
-Status: release candidate validated; publication pending
+Status: published and verified
 
 Validated commit: `dc7fd9974d7a0a185fdddc88a3ae2f0b5669b3a1`
 
@@ -45,8 +45,11 @@ PRs #15 and #16 were closed as superseded delivery attempts after GitHub did not
 
 ## Publication Plan
 
-1. Merge the release-readiness CDD update.
-2. Confirm CI passes on the resulting `main` commit.
-3. Create tag and GitHub release `v0.1.0` with standalone and installer assets.
-4. Verify raw tag download, release assets, installer, and smoke workflow.
-5. Update CDD status with published release evidence and close Issue #8 through a final PR.
+All publication steps completed:
+
+1. Release-readiness evidence merged through PR #18.
+2. Main CI run `30524049087` passed on commit `4dee455e1397c3d18f919df073665ea684415ee1`.
+3. GitHub release [`v0.1.0`](https://github.com/dejth/agentbench/releases/tag/v0.1.0) published at `2026-07-30T07:48:11Z` as a final release.
+4. Release assets `agentbench.sh` and `install.sh` were uploaded.
+5. Raw tag, release asset, and installer output matched SHA-256 `265da0ef9313c4caaee38b097435b6b44baf747929e9dd961853cf0fe002f25a`.
+6. The installed release runner passed `version`, `init`, and `validate` in a fresh temporary Git repository.

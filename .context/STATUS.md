@@ -4,7 +4,7 @@ Last updated: 2026-07-30
 
 Target: v0.1.0
 
-Overall state: v0.1.0 release candidate validated
+Overall state: v0.1.0 published and verified
 
 ## Current State
 
@@ -18,11 +18,12 @@ Overall state: v0.1.0 release candidate validated
 - Standalone packaging, user documentation, examples, and security guidance are merged through PR #17.
 - The complete local suite and Linux/macOS CI pass on `main`.
 - The raw `main` standalone runner matches the local artifact and passes version, initialization, and benchmark validation smoke checks.
-- No `v0.1.0` tag or GitHub release exists yet.
+- Release `v0.1.0` is published from commit `4dee455e1397c3d18f919df073665ea684415ee1`.
+- Release assets, raw tag download, installer output, and standalone smoke workflow are verified.
 
 ## Active Work
 
-- Issue #8: validate release readiness and publish AgentBench v0.1.0.
+- No active v0.1.0 implementation work remains.
 
 ## Known Risks
 
@@ -34,4 +35,4 @@ Overall state: v0.1.0 release candidate validated
 
 ## Next Milestone
 
-Merge the release-readiness evidence, publish and verify v0.1.0, then record final release status and close Issue #8.
+Collect post-release feedback and define the next scoped milestone through a new CDD and GitHub Issue cycle.
