@@ -2,7 +2,7 @@
 
 > Test your AI context like you test your code.
 
-[![test](https://github.com/dejth/agentbench/actions/workflows/test.yml/badge.svg)](https://github.com/dejth/agentbench/actions/workflows/test.yml)
+[![CI](https://github.com/dejth/agentbench/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/dejth/agentbench/actions/workflows/ci.yml?query=branch%3Amain)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 AgentBench is a local-first shell runner for comparing prompts, project context, `AGENTS.md`, CDD, skills, models, providers, harnesses, and agent workflows against real tasks from your own Git project.
