@@ -4,18 +4,18 @@ Last updated: 2026-07-30
 
 Target: v0.1.0
 
-Overall state: foundation in progress
+Overall state: CLI foundation in progress
 
 ## Current State
 
 - Repository identity, visibility, default branch, license, remote, active GitHub account, and clean worktree have been verified.
-- Product, requirements, architecture, decisions, plan, task dependencies, and deterministic quality gates are defined.
-- Implementation has not started.
-- No CLI, automated tests, CI, examples, or release artifact exists yet.
+- Product, requirements, architecture, decisions, plan, task dependencies, and deterministic quality gates are defined and merged through PR #2.
+- CLI initialization and Markdown parsing are under implementation.
+- No run engine, comparison engine, CI, complete documentation, or release artifact exists yet.
 
 ## Active Work
 
-- Issue #1: establish CDD foundation and project quality gates.
+- Issue #5: build CLI initialization and Markdown parser.
 
 ## Known Risks
 
@@ -27,4 +27,4 @@ Overall state: foundation in progress
 
 ## Next Milestone
 
-Merge the reviewed CDD foundation, then implement CLI initialization and Markdown parsing under the next scoped Issue.
+Merge the reviewed CLI initialization and Markdown parser, then implement workspace isolation and the custom adapter in Issue #9.
